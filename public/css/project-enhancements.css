@@ -1,0 +1,76 @@
+/* Project Card Enhancements */
+[data-category="full-stack"],
+[data-category="data-visualization"] {
+  cursor: pointer;
+  position: relative;
+}
+
+[data-category="full-stack"]:hover,
+[data-category="data-visualization"]:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Details indicator */
+[data-category="full-stack"]::before,
+[data-category="data-visualization"]::before {
+  content: "💡 Click for details";
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(59, 130, 246, 0.9);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+[data-category="full-stack"]:hover::before,
+[data-category="data-visualization"]:hover::before {
+  opacity: 1;
+}
+
+/* Modal improvements */
+#project-details-modal {
+  backdrop-filter: blur(8px);
+}
+
+#project-details-modal .bg-white {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Animation for modal content */
+#project-details-modal .p-6 > * {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+  #project-details-modal .max-w-4xl {
+    max-width: 95vw;
+    margin: 1rem;
+  }
+
+  #project-details-modal .grid.md\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  #project-details-modal .grid.md\\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

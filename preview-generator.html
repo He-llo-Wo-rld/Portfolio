@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Project Preview Generator</title>
+    <style>
+        body { margin: 0; background: #1a1a1a; font-family: 'Inter', sans-serif; }
+        .preview { width: 400px; height: 240px; position: relative; overflow: hidden; }
+        .gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .gradient-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .gradient-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .gradient-5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .gradient-6 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; }
+        .title { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+        .subtitle { font-size: 14px; opacity: 0.8; }
+        .icon { font-size: 48px; margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+    <div id="previews"></div>
+    
+    <script>
+        const projects = [
+            { name: 'finance-tracker', title: 'Finance Tracker', icon: '💰', class: 'gradient' },
+            { name: 'placeholder-backend', title: 'API Backend', icon: '🚀', class: 'gradient-2' },
+            { name: 'house-prices-tracker', title: 'House Prices', icon: '🏠', class: 'gradient-3' },
+            { name: 'task-manager', title: 'Task Manager', icon: '✅', class: 'gradient-4' },
+            { name: 'weather-app', title: 'Weather App', icon: '🌤️', class: 'gradient-5' },
+            { name: 'portfolio', title: 'Portfolio', icon: '👨‍💻', class: 'gradient-6' }
+        ];
+
+        const container = document.getElementById('previews');
+        
+        projects.forEach(project => {
+            const preview = document.createElement('div');
+            preview.className = `preview ${project.class}`;
+            preview.innerHTML = `
+                <div class="content">
+                    <div class="icon">${project.icon}</div>
+                    <div class="title">${project.title}</div>
+                    <div class="subtitle">Preview Image</div>
+                </div>
+            `;
+            preview.id = project.name;
+            container.appendChild(preview);
+        });
+
+        // Instructions for generating images
+        console.log('To save these as images:');
+        console.log('1. Open developer tools');
+        console.log('2. Right-click on each preview div');
+        console.log('3. Select "Capture node screenshot"');
+        console.log('4. Save as /public/projects/{project-name}.jpg');
+    </script>
+</body>
+</html>

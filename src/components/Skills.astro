@@ -1,0 +1,87 @@
+---
+const skillCategories = [
+  {
+    title: "Backend Development",
+    icon: "⚙️",
+    skills: [
+      "Python", "FastAPI", "Django", "Node.js", 
+      "Express", "Nest.js", "RESTful APIs", "WebSockets"
+    ]
+  },
+  {
+    title: "Frontend Development",
+    icon: "🎨",
+    skills: [
+      "HTML5", "CSS3", "SASS", "JavaScript", "TypeScript", 
+      "React", "Next.js", "Redux Toolkit", "Responsive Design"
+    ]
+  },
+  {
+    title: "Databases & Storage",
+    icon: "🗄️", 
+    skills: [
+      "MongoDB", "Mongoose", "MySQL", "PostgreSQL",
+      "SQLAlchemy", "Prisma", "Redis"
+    ]
+  },
+  {
+    title: "DevOps & Tools",
+    icon: "🛠️",
+    skills: [
+      "Git", "AWS S3", "Docker", "Swagger",
+      "Web Scraping", "BeautifulSoup", "Selenium"
+    ]
+  }
+];
+---
+
+<section id="skills" class="py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        Technologies I work with and enjoy learning
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      {skillCategories.map((category) => (
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+          <div class="flex items-center mb-4">
+            <span class="text-2xl mr-3">{category.icon}</span>
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+              {category.title}
+            </h3>
+          </div>
+          
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {category.skills.map((skill) => (
+              <div class="px-3 py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-lg text-sm font-medium text-center hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors">
+                {skill}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Soft Skills Section -->
+    <div class="mt-12 text-center">
+      <h3 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Core Competencies</h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        {[
+          "Attention to Detail",
+          "Analytical Thinking", 
+          "Quick Learner",
+          "Problem Solving",
+          "Team Collaboration",
+          "Communication"
+        ].map((skill) => (
+          <span class="px-4 py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,107 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { allProjects, getAllTechnologies, getAllCategories } from '../data/index';
+
+const projects = allProjects;
+const allTechnologies = getAllTechnologies();
+const categories = getAllCategories();
+---
+
+<section id="projects" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        A collection of web applications and solutions I've built
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 max-w-lg mx-auto">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{projects.length}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Total Projects</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-primary-600 dark:text-primary-400">{allTechnologies.length}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Technologies Used</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-8">
+      <div class="flex flex-wrap justify-center gap-3 mb-6">
+        <button 
+          class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-primary-600 text-white hover:bg-primary-700"
+          data-filter="all"
+        >
+          All Projects
+        </button>
+        
+        {categories.map((category) => (
+          <button 
+            class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900/30"
+            data-filter={category}
+          >
+            {category === 'backend-focused' ? 'Backend Focused' : 
+             category === 'data-visualization' ? 'Data Visualization' :
+             category === 'full-stack' ? 'Full-Stack' :
+             category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+          </button>
+        ))}
+      </div>
+      
+      <div class="text-center mb-4">
+        <span class="text-sm text-gray-600 dark:text-gray-400">Filter by technology:</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-2">
+        {allTechnologies.slice(0, 8).map((tech) => (
+          <button 
+            class="tech-filter px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-700 dark:hover:text-primary-300"
+            data-tech={tech}
+          >
+            {tech}
+          </button>
+        ))}
+      </div>
+    </div>
+    
+    <div id="projects-grid" class="grid md:grid-cols-2 gap-8">
+      {projects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+    
+    <div id="no-results" class="hidden text-center py-12">
+      <div class="text-gray-400 dark:text-gray-500 mb-4">
+        <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.467-.881-6.08-2.33M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">No projects found</h3>
+      <p class="text-gray-500 dark:text-gray-500">Try adjusting your filters or search criteria</p>
+    </div>
+    
+    <div class="text-center mt-12">
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md">
+        <h3 class="text-2xl font-bold mb-4">What's Next?</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          I'm currently working on more complex projects with advanced backend architecture, 
+          microservices, and scalable solutions. Stay tuned for updates!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="#contact" 
+            class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+          >
+            Discuss a Project
+          </a>
+          <a 
+            href="mailto:your.email@example.com" 
+            class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          >
+            Get In Touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
